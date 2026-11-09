@@ -1,4 +1,4 @@
-Asignatura: Programación para Dispositivos Móviles · Profesor: Ing. Roilán Rodríguez Castillo 
+
 
 ## Cómo ejecutar
 
