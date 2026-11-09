@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0e1116">
+  <title>Tablero de órdenes · El Pistón</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <script src="js/tema.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/paginas/tablero.js"></script>
+</head>
+<body>
+  <header id="cabecera"></header>
+  <main class="pagina" id="principal">
+    <section class="titular">
+      <div>
+        <h1>Tablero de órdenes</h1>
+        <p id="resumen-tablero">Arrastre una tarjeta para cambiar su estado</p>
+      </div>
+      <div class="segmentos" id="vista" role="group" aria-label="Vista">
+        <button type="button" class="segmento" data-valor="tablero" aria-pressed="true">Tablero</button>
+        <button type="button" class="segmento" data-valor="historial" aria-pressed="false">Historial</button>
+      </div>
+    </section>
+
+    <div class="herramientas">
+      <label class="campo-busqueda">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3m0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10"/></svg>
+        <input type="search" id="filtro-texto" placeholder="Filtrar por matrícula o cliente" aria-label="Filtrar órdenes">
+      </label>
+      <div class="fichas" id="filtro-mecanico" role="group" aria-label="Mecánico"></div>
+    </div>
+
+    <section id="panel-tablero">
+      <nav class="fichas saltos" id="saltos" aria-label="Ir a columna"></nav>
+      <div class="tablero" id="tablero"></div>
+    </section>
+
+    <section id="panel-historial" class="bloque oculto">
+      <div class="herramientas">
+        <div class="segmentos" id="historial-estado" role="group" aria-label="Estado">
+          <button type="button" class="segmento" data-valor="entregada" aria-pressed="true">Entregadas</button>
+          <button type="button" class="segmento" data-valor="cancelada" aria-pressed="false">Canceladas</button>
+          <button type="button" class="segmento" data-valor="todas" aria-pressed="false">Todas</button>
+        </div>
+      </div>
+      <div id="historial"></div>
+      <div class="herramientas" id="historial-paginas"></div>
+    </section>
+  </main>
+  <nav id="barra-movil"></nav>
+  <div class="avisos" id="avisos" aria-live="polite"></div>
+</body>
+</html>

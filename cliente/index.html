@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0e1116">
+  <title>Hoy · El Pistón</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <script src="js/tema.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/paginas/hoy.js"></script>
+</head>
+<body>
+  <header id="cabecera"></header>
+  <main class="pagina" id="principal">
+    <section class="titular">
+      <div>
+        <span class="etiqueta" id="fecha-hoy"></span>
+        <h1 id="saludo">Hoy en el taller</h1>
+        <p id="resumen-hoy">Cargando el estado del taller…</p>
+      </div>
+    </section>
+
+    <section class="cifras" id="cifras" aria-label="Indicadores"></section>
+
+    <div class="columnas columnas--hoy">
+      <div>
+        <section class="bloque">
+          <div class="bloque__titulo">
+            <h2>Órdenes abiertas</h2>
+            <a class="boton boton--texto" href="ordenes.html">Abrir tablero</a>
+          </div>
+          <div id="distribucion"></div>
+        </section>
+        <section class="bloque">
+          <div class="bloque__titulo">
+            <div>
+              <h2 id="titulo-cola">Cola de trabajo</h2>
+              <p class="tenue">Avance cada orden con un toque</p>
+            </div>
+          </div>
+          <div id="cola"></div>
+        </section>
+      </div>
+      <div>
+        <section class="bloque">
+          <div class="bloque__titulo"><h2>Requiere atención</h2></div>
+          <div id="alertas"></div>
+        </section>
+        <section class="bloque">
+          <div class="bloque__titulo"><h2>Equipo</h2></div>
+          <div id="equipo"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <nav id="barra-movil"></nav>
+  <div class="avisos" id="avisos" aria-live="polite"></div>
+</body>
+</html>

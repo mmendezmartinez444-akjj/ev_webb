@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0e1116">
+  <title>Orden de servicio · El Pistón</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <script src="js/tema.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/paginas/orden.js"></script>
+</head>
+<body>
+  <header id="cabecera"></header>
+  <main class="pagina pagina--cobro" id="principal">
+    <a href="ordenes.html" class="volver"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>Tablero</a>
+
+    <section class="heroe" id="heroe">
+      <div class="carga"></div>
+    </section>
+
+    <div class="diseno-orden">
+      <section class="bloque">
+        <div class="pestanas-internas" role="tablist" aria-label="Detalle de la orden">
+          <button type="button" class="pestana-interna" role="tab" data-pestana="trabajos" aria-selected="true">Trabajos<span class="contador" id="contador-trabajos">0</span></button>
+          <button type="button" class="pestana-interna" role="tab" data-pestana="repuestos" aria-selected="false">Repuestos<span class="contador" id="contador-repuestos">0</span></button>
+          <button type="button" class="pestana-interna oculto" role="tab" data-pestana="pagos" aria-selected="false" id="pestana-pagos">Pagos<span class="contador" id="contador-pagos">0</span></button>
+        </div>
+
+        <div data-panel="trabajos" role="tabpanel">
+          <form class="agregar-linea oculto" id="formulario-trabajo" novalidate>
+            <input class="entrada" name="descripcion" required minlength="3" maxlength="200" placeholder="Trabajo realizado" aria-label="Trabajo realizado">
+            <input class="entrada" name="precio" type="number" required min="0" step="0.01" inputmode="decimal" placeholder="Precio" aria-label="Precio de mano de obra">
+            <button type="submit" class="boton">Añadir</button>
+            <p class="error-formulario" aria-live="assertive"></p>
+          </form>
+          <div id="lista-trabajos"></div>
+        </div>
+
+        <div data-panel="repuestos" role="tabpanel" class="oculto">
+          <button type="button" class="boton boton--sobrio boton--ancho oculto" id="boton-usar-repuesto">Usar repuesto del inventario</button>
+          <div id="lista-repuestos"></div>
+        </div>
+
+        <div data-panel="pagos" role="tabpanel" class="oculto">
+          <div id="lista-pagos"></div>
+        </div>
+      </section>
+
+      <aside class="bloque cuenta" id="cuenta"></aside>
+    </div>
+
+    <div class="barra-cobro" id="barra-cobro"></div>
+  </main>
+  <nav id="barra-movil"></nav>
+  <dialog class="hoja" id="hoja-repuesto" aria-labelledby="hoja-repuesto-titulo">
+    <form novalidate>
+      <div class="hoja__asa"></div>
+      <div class="hoja__cabecera">
+        <h2 id="hoja-repuesto-titulo">Usar repuesto</h2>
+        <button type="button" class="icono-boton" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button>
+      </div>
+      <div class="hoja__cuerpo">
+        <div class="formulario">
+          <input type="search" class="entrada" id="buscar-repuesto" placeholder="Buscar repuesto" aria-label="Buscar repuesto" autocomplete="off">
+          <input type="hidden" name="repuesto" required>
+          <div id="opciones-repuesto"></div>
+          <label class="campo"><span>Cantidad</span><input type="number" name="cantidad" required min="1" step="1" value="1" inputmode="numeric"></label>
+          <p class="error-formulario" aria-live="assertive"></p>
+        </div>
+      </div>
+      <div class="hoja__pie">
+        <button type="button" class="boton boton--sobrio" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton">Usar en la orden</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog class="hoja" id="hoja-cobro" aria-labelledby="hoja-cobro-titulo">
+    <form novalidate>
+      <div class="hoja__asa"></div>
+      <div class="hoja__cabecera">
+        <h2 id="hoja-cobro-titulo">Registrar cobro</h2>
+        <button type="button" class="icono-boton" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button>
+      </div>
+      <div class="hoja__cuerpo">
+        <div class="formulario">
+          <p class="tenue" id="cobro-saldo"></p>
+          <label class="campo"><span>Monto</span><input type="number" name="monto" id="cobro-monto" required min="0.01" step="0.01" inputmode="decimal"></label>
+          <div class="fichas" id="cobro-rapido"></div>
+          <div class="campo"><span>Método</span>
+            <div class="segmentos" id="cobro-metodo" role="group" aria-label="Método de pago">
+              <button type="button" class="segmento" data-valor="efectivo" aria-pressed="true">Efectivo</button>
+              <button type="button" class="segmento" data-valor="transferencia" aria-pressed="false">Transferencia</button>
+            </div>
+          </div>
+          <input type="hidden" name="metodo" value="efectivo">
+          <label class="campo"><span>Nota</span><input name="nota" maxlength="200" placeholder="Opcional"></label>
+          <p class="error-formulario" aria-live="assertive"></p>
+        </div>
+      </div>
+      <div class="hoja__pie">
+        <button type="button" class="boton boton--sobrio" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton boton--ok">Cobrar</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="avisos" id="avisos" aria-live="polite"></div>
+</body>
+</html>

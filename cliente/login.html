@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0e1116">
+  <title>Entrar · El Pistón</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <script src="js/tema.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/paginas/login.js"></script>
+</head>
+<body class="listo">
+  <main class="acceso">
+    <section class="acceso__arte" aria-hidden="true">
+      <img src="img/logo.svg" alt="" width="56" height="56">
+      <h2>Cada carro, cada pieza, cada peso. En un solo lugar.</h2>
+      <p>Órdenes de servicio, inventario y cobros del Taller El Pistón, en la PC de recepción y en el teléfono de cada mecánico.</p>
+    </section>
+    <section class="acceso__panel">
+      <div class="acceso__formulario">
+        <img src="img/logo.svg" alt="Logo de El Pistón" width="44" height="44">
+        <h1>Entrar al taller</h1>
+        <p class="tenue">Use su correo y contraseña de trabajo.</p>
+        <form id="formulario-acceso" class="formulario separado" novalidate>
+          <label class="campo"><span>Correo</span><input type="email" name="email" autocomplete="username" required placeholder="usuario@elpiston.cu"></label>
+          <label class="campo"><span>Contraseña</span><input type="password" name="password" autocomplete="current-password" required minlength="8"></label>
+          <p class="error-formulario" aria-live="assertive"></p>
+          <button type="submit" class="boton boton--ancho">Entrar</button>
+        </form>
+        <div class="cuentas-demo">
+          <span class="etiqueta">Cuentas de demostración · clave piston2026</span>
+          <button type="button" class="cuenta-demo" data-correo="dueno@elpiston.cu"><span class="avatar avatar--chico avatar--tono-1">D</span><span><strong>Dueño</strong><small>dueno@elpiston.cu</small></span></button>
+          <button type="button" class="cuenta-demo" data-correo="recepcion@elpiston.cu"><span class="avatar avatar--chico avatar--tono-2">R</span><span><strong>Recepción</strong><small>recepcion@elpiston.cu</small></span></button>
+          <button type="button" class="cuenta-demo" data-correo="raul@elpiston.cu"><span class="avatar avatar--chico avatar--tono-3">M</span><span><strong>Mecánico</strong><small>raul@elpiston.cu</small></span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="avisos" id="avisos" aria-live="polite"></div>
+</body>
+</html>
